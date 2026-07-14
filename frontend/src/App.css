@@ -1110,6 +1110,68 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.brand-button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mobile-menu-label {
+  display: none;
+  margin-left: auto;
+  border: 1px solid rgba(191, 219, 254, 0.32);
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #bfdbfe;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    min-height: auto;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .brand {
+    padding: 4px;
+  }
+
+  .mobile-menu-label {
+    display: inline-flex;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(100vh - 116px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 0 2px;
+  }
+
+  .sidebar.mobile-open .nav-menu {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+    justify-content: flex-start;
+    white-space: nowrap;
+  }
+}
 @media (max-width: 760px) {
   body {
     overflow-x: hidden;

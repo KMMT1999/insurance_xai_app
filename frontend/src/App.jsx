@@ -1124,6 +1124,7 @@ function UncertainCustomersPage({
 }
 function App() {
   const [activePage, setActivePage] = useState("dashboard");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [apiError, setApiError] = useState("");
@@ -1343,10 +1344,22 @@ function App() {
 
   const activeMenu = menuItems.find((item) => item.id === activePage);
 
+  function handleNavigation(pageId) {
+    setActivePage(pageId);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand">
+      <aside className={mobileMenuOpen ? "sidebar mobile-open" : "sidebar"}>
+        <button
+          type="button"
+          className="brand brand-button"
+          onClick={() => setMobileMenuOpen((current) => !current)}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="main-navigation"
+        >
           <div className="brand-icon">
             <Gauge size={24} />
           </div>
@@ -1354,16 +1367,19 @@ function App() {
             <h1>Insurance XAI</h1>
             <p>Customer Segmentation</p>
           </div>
-        </div>
+          <span className="mobile-menu-label">
+            {mobileMenuOpen ? "Close" : activeMenu?.label || "Menu"}
+          </span>
+        </button>
 
-        <nav className="nav-menu">
+        <nav id="main-navigation" className="nav-menu">
           {menuItems.map((item) => {
             const Icon = item.icon;
 
             return (
               <button
                 key={item.id}
-                onClick={() => setActivePage(item.id)}
+                onClick={() => handleNavigation(item.id)}
                 className={item.id === activePage ? "nav-item active" : "nav-item"}
               >
                 <Icon size={18} />
