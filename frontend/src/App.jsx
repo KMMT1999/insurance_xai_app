@@ -26,6 +26,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
 const menuItems = [
   { id: "dashboard", label: "Dashboard", icon: Home },
@@ -1167,7 +1169,7 @@ function App() {
   const [uncertainPageSize, setUncertainPageSize] = useState(10);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/dashboard/")
+    fetch(`${API_BASE_URL}/api/dashboard/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Could not connect to Django API");
@@ -1199,7 +1201,7 @@ function App() {
       params.append("cluster", clusterFilter);
     }
   
-    fetch(`http://127.0.0.1:8000/api/customers/?${params.toString()}`)
+    fetch(`${API_BASE_URL}/api/customers/?${params.toString()}`)
       .then((response) => response.json())
       .then((data) => {
         setCustomers(data.results || []);
@@ -1211,7 +1213,7 @@ function App() {
   }, [customerSearch, clusterFilter, customerPage, pageSize]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/surrogate/performance/")
+    fetch(`${API_BASE_URL}/api/surrogate/performance/`)
       .then((response) => response.json())
       .then((data) => {
         setSurrogatePerformance(data);
@@ -1222,7 +1224,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/shap/global/")
+    fetch(`${API_BASE_URL}/api/shap/global/`)
       .then((response) => response.json())
       .then((data) => {
         setGlobalShap(data);
@@ -1233,7 +1235,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/shap/cluster/${selectedCluster}/`)
+    fetch(`${API_BASE_URL}/api/shap/cluster/${selectedCluster}/`)
       .then((response) => response.json())
       .then((data) => {
         setClusterShap(data);
@@ -1257,7 +1259,7 @@ function App() {
       params.append("cluster", uncertainClusterFilter);
     }
   
-    fetch(`http://127.0.0.1:8000/api/uncertain-customers/?${params.toString()}`)
+    fetch(`${API_BASE_URL}/api/uncertain-customers/?${params.toString()}`)
       .then((response) => response.json())
       .then((data) => {
         setUncertainCustomers(data.results || []);
@@ -1283,7 +1285,7 @@ function App() {
     setLocalCustomer(null);
     setLocalReasons([]);
   
-    fetch(`http://127.0.0.1:8000/api/customers/${localCustomerId.trim()}/`)
+    fetch(`${API_BASE_URL}/api/customers/${localCustomerId.trim()}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Customer not found");
@@ -1293,9 +1295,7 @@ function App() {
       .then((customer) => {
         setLocalCustomer(customer);
   
-        return fetch(
-          `http://127.0.0.1:8000/api/shap/cluster/${customer.GMM_Cluster}/`
-        );
+        return fetch(`${API_BASE_URL}/api/shap/cluster/${customer.GMM_Cluster}/`);
       })
       .then((response) => response.json())
       .then((reasons) => {
@@ -1319,7 +1319,7 @@ function App() {
     setPredictionError("");
     setPredictionResult(null);
   
-    fetch("http://127.0.0.1:8000/api/predict/", {
+    fetch(`${API_BASE_URL}/api/predict/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
