@@ -1,0 +1,25 @@
+|--- Premium_to_Coverage <= 0.03
+|   |--- Recency Days <= 1093.00
+|   |   |--- Coverage Amount <= 75660.00
+|   |   |   |--- class: 1
+|   |   |--- Coverage Amount >  75660.00
+|   |   |   |--- Premium_to_Coverage <= 0.03
+|   |   |   |   |--- class: 0
+|   |   |   |--- Premium_to_Coverage >  0.03
+|   |   |   |   |--- class: 0
+|   |--- Recency Days >  1093.00
+|   |   |--- Premium_to_Coverage <= 0.03
+|   |   |   |--- class: 2
+|   |   |--- Premium_to_Coverage >  0.03
+|   |   |   |--- class: 2
+|--- Premium_to_Coverage >  0.03
+|   |--- Coverage Amount <= 146956.00
+|   |   |--- Coverage Amount <= 137138.50
+|   |   |   |--- Premium_to_Coverage <= 0.03
+|   |   |   |   |--- class: 1
+|   |   |   |--- Premium_to_Coverage >  0.03
+|   |   |   |   |--- class: 1
+|   |   |--- Coverage Amount >  137138.50
+|   |   |   |--- class: 1
+|   |--- Coverage Amount >  146956.00
+|   |   |--- class: 2

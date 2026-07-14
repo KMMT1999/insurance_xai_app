@@ -1,0 +1,40 @@
+Cluster,Cluster_Name,Feature,Mean_Abs_SHAP
+0,Recent high-income customers,Policy Age,0.1549129174312451
+0,Recent high-income customers,Recency Days,0.1444941871079357
+0,Recent high-income customers,Purchase Year,0.13210176562194795
+0,Recent high-income customers,Premium_to_Coverage,0.0827253010103144
+0,Recent high-income customers,Coverage Amount,0.06123930738003205
+0,Recent high-income customers,Coverage_to_Income,0.019846838598746232
+0,Recent high-income customers,Premium Amount,0.005266882493236987
+0,Recent high-income customers,Premium_to_Income,0.004820408031853234
+0,Recent high-income customers,Income Level,0.002073030664486038
+0,Recent high-income customers,Purchase Month,0.0006719236916355282
+0,Recent high-income customers,Age,0.0005245363551570937
+0,Recent high-income customers,Purchase Day,0.00048970925411361
+0,Recent high-income customers,Digital_Channel_Flag,0.00016091840905089845
+1,Affordability-sensitive customers,Premium_to_Coverage,0.1630180105610293
+1,Affordability-sensitive customers,Coverage Amount,0.12111271077769452
+1,Affordability-sensitive customers,Coverage_to_Income,0.04233141589958474
+1,Affordability-sensitive customers,Premium Amount,0.012494608736686535
+1,Affordability-sensitive customers,Premium_to_Income,0.009895798409595834
+1,Affordability-sensitive customers,Income Level,0.003897185000384214
+1,Affordability-sensitive customers,Recency Days,0.0019638273339892625
+1,Affordability-sensitive customers,Policy Age,0.00173157352781416
+1,Affordability-sensitive customers,Age,0.0009348646451805449
+1,Affordability-sensitive customers,Purchase Year,0.0008901990450869712
+1,Affordability-sensitive customers,Purchase Day,0.0008011388991499824
+1,Affordability-sensitive customers,Purchase Month,0.0005802237101303821
+1,Affordability-sensitive customers,Digital_Channel_Flag,0.00023869549575545012
+2,Older or inactive policy holders,Policy Age,0.1552150198833665
+2,Older or inactive policy holders,Recency Days,0.1448627816349319
+2,Older or inactive policy holders,Purchase Year,0.13276680600985216
+2,Older or inactive policy holders,Premium_to_Coverage,0.08031482556132731
+2,Older or inactive policy holders,Coverage Amount,0.05989014009495733
+2,Older or inactive policy holders,Coverage_to_Income,0.022505384623447932
+2,Older or inactive policy holders,Premium Amount,0.007268796246009295
+2,Older or inactive policy holders,Premium_to_Income,0.0051556973452885025
+2,Older or inactive policy holders,Income Level,0.001869005822653623
+2,Older or inactive policy holders,Purchase Month,0.0007355160284226141
+2,Older or inactive policy holders,Purchase Day,0.0005998551414245045
+2,Older or inactive policy holders,Age,0.0005092928698724562
+2,Older or inactive policy holders,Digital_Channel_Flag,9.690073885625309e-05
