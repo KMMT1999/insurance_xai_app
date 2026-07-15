@@ -873,8 +873,6 @@ function NewPredictionPage({
     "Purchase Year",
     "Purchase Month",
     "Purchase Day",
-    "Recency Days",
-    "Policy Age",
     "Digital_Channel_Flag",
   ];
 
@@ -1154,8 +1152,6 @@ function App() {
     "Purchase Year": 2018,
     "Purchase Month": 10,
     "Purchase Day": 9,
-    "Recency Days": 300,
-    "Policy Age": 1,
     Digital_Channel_Flag: 1,
   });
   

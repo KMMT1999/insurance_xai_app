@@ -4,10 +4,49 @@ import pandas as pd
 
 from .customer_service import ARTIFACT_DIR
 from .explanation_service import get_cluster_shap
+from datetime import date
 
 
 _model_bundle = None
+TRAINING_REFERENCE_DATE = date(2023, 12, 28)
 
+
+def calculate_date_features(input_data, data, feature_cols):
+    data = data.copy()
+
+    try:
+        purchase_year = int(float(input_data.get("Purchase Year", data.get("Purchase Year", 2023))))
+        purchase_month = int(float(input_data.get("Purchase Month", data.get("Purchase Month", 1))))
+        purchase_day = int(float(input_data.get("Purchase Day", data.get("Purchase Day", 1))))
+
+        purchase_date = date(purchase_year, purchase_month, purchase_day)
+
+        recency_days = (TRAINING_REFERENCE_DATE - purchase_date).days
+
+        # Prevent negative value if user enters date newer than training data
+        recency_days = max(recency_days, 0)
+
+        policy_age = recency_days / 365.25
+
+        if "Purchase Year" in feature_cols:
+            data["Purchase Year"] = float(purchase_year)
+
+        if "Purchase Month" in feature_cols:
+            data["Purchase Month"] = float(purchase_month)
+
+        if "Purchase Day" in feature_cols:
+            data["Purchase Day"] = float(purchase_day)
+
+        if "Recency Days" in feature_cols:
+            data["Recency Days"] = float(recency_days)
+
+        if "Policy Age" in feature_cols:
+            data["Policy Age"] = float(policy_age)
+
+    except Exception:
+        pass
+
+    return data
 
 def load_model_bundle():
     global _model_bundle
@@ -58,6 +97,8 @@ def predict_customer(input_data):
     for feature in feature_cols:
         data[feature] = float(input_data.get(feature, medians.get(feature, 0)))
 
+
+    data = calculate_date_features(input_data, data, feature_cols)
     data = calculate_ratio_features(data, feature_cols)
 
     input_df = pd.DataFrame([data], columns=feature_cols)
